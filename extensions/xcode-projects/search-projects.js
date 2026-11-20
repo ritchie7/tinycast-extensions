@@ -1,5 +1,5 @@
 const React = require("react");
-const { List, ActionPanel, Action, LocalStorage, Icon, Color, Toast, Clipboard, confirmAlert, open, environment, showToast, closeMainWindow, getPreferenceValues } = require("@raycast/api");
+const { List, ActionPanel, Action, LocalStorage, Icon, Color, Toast, Clipboard, confirmAlert, openExtensionPreferences, environment, showToast, closeMainWindow, getPreferenceValues } = require("@raycast/api");
 const { spawn, execFile } = require("child_process");
 const path = require("path");
 const fs = require("fs");
@@ -45,7 +45,7 @@ async function checkForUpdates() {
       primaryAction: { title: "Copy Link and Open Settings" } });
     if (proceed) {
       await Clipboard.copy(sourceURL);
-      await open("tinycast://settings/extensions");
+      await openExtensionPreferences();
     }
   } catch (error) { await showToast(Toast.Style.Failure, "Could not check for updates", String(error.message || error)); }
 }
